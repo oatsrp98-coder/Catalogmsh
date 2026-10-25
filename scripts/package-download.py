@@ -12,4 +12,10 @@ out=root/'download';out.mkdir(exist_ok=True)
 with zipfile.ZipFile(out/'medical-catalog.zip','w',zipfile.ZIP_DEFLATED) as z:
  z.write(out/'medical-catalog.html','medical-catalog.html')
  z.write(root/'public/fonts/OFL.txt','FONT-LICENSE.txt')
-print('Updated standalone HTML and ZIP with embedded font.')
+with zipfile.ZipFile(out/'catalog-vercel.zip','w',zipfile.ZIP_DEFLATED) as z:
+ for name in ['README.md','index.html','style.css','main.js','package.json','package-lock.json','vercel.json','.vercelignore','.gitignore']:
+  z.write(root/name,'catalog/'+name)
+ for folder in ['public','scripts']:
+  for p in sorted((root/folder).rglob('*')):
+   if p.is_file():z.write(p,'catalog/'+str(p.relative_to(root)))
+print('Updated standalone HTML, offline ZIP, and Vercel source ZIP.')

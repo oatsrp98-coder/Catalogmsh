@@ -1,1 +1,94 @@
-<!doctype html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VERDANT — Medical Catalog Studio</title><link rel="stylesheet" href="/style.css"></head><body><header><a class="brand" href="#">✳ <span>VERDANT<small>MEDICAL CATALOG STUDIO</small></span></a><span class="header-note">พื้นที่สร้างสรรค์แคตตาล็อกของคุณ</span><button id="print" class="primary">↗ ส่งออก PDF · A4</button></header><main><section class="intro"><div><div class="eyebrow">DESIGNED FOR BETTER CARE</div><h1>รายละเอียดที่ดี<br>สร้างความเชื่อมั่นได้เสมอ<span>.</span></h1><p>สร้างแคตตาล็อกเครื่องมือแพทย์ที่สะท้อนมาตรฐานของคุณ</p></div><div class="intro-right"><span class="round">✳</span><p>YOUR PRODUCTS.<br>EXCEPTIONALLY PRESENTED.</p></div></section><div class="workspace"><aside><div class="panel-title"><h2>ออกแบบแคตตาล็อก</h2><span>01 — 03</span></div><section class="controls"><h3>01 <span>ข้อมูลแบรนด์</span></h3><label>ชื่อแบรนด์<input id="brandName" maxlength="70"></label><label>ชื่อแคตตาล็อก<input id="catalogTitle" maxlength="100"></label><label>คำอธิบาย<textarea id="description" rows="2" maxlength="250"></textarea></label><label>ช่องทางติดต่อ<input id="contact" maxlength="120"></label></section><section class="controls"><h3>02 <span>สไตล์และแม่แบบ</span></h3><div class="templates"><button data-layout="editorial">▤<small>Editorial</small></button><button data-layout="grid">▦<small>Collection</small></button><button data-layout="minimal">☰<small>Minimal</small></button></div><div class="color-row"><label>สีหลัก <input type="color" id="accent"></label><label>ขนาดข้อความ<select id="fontSize"><option value="14">เล็ก</option><option value="16">กลาง</option><option value="18">ใหญ่</option></select></label></div></section><section class="controls"><h3>03 <span>รายการสินค้า</span><b id="count"></b></h3><div id="productList"></div><button id="add" class="add">＋ เพิ่มสินค้า</button></section><p class="save-note" id="status" role="status">บันทึกอัตโนมัติบนเบราว์เซอร์นี้</p></aside><section class="preview-area"><div class="preview-toolbar"><span><i></i> ตัวอย่างแคตตาล็อก</span><span>A4 · PORTRAIT</span></div><article id="catalog"></article><p class="export-help">ส่งออก A4 ขนาด 210 × 297 มม. · เลือก “บันทึกเป็น PDF” ในหน้าพิมพ์ ตั้งค่ากระดาษ A4 สเกล 100% และปิดหัวกระดาษ/ท้ายกระดาษของเบราว์เซอร์</p><p class="preview-note">ปรับแต่งได้ตามต้องการ · พร้อมส่งต่อความประทับใจ</p></section></div></main><dialog id="editor"><form id="productForm"><div class="panel-title"><h2>รายละเอียดสินค้า</h2><button type="button" id="close">✕</button></div><label>รูปสินค้า<input type="file" id="photo" accept="image/png,image/jpeg,image/webp"></label><img id="photoPreview" alt="ตัวอย่างรูปสินค้า" hidden><button type="button" id="removePhoto">ลบรูปภาพ</button><label>ชื่อสินค้า<input id="productName" required maxlength="120"></label><label>หมวดหมู่<input id="category" maxlength="80"></label><label>รุ่น / รหัสสินค้า<input id="model" maxlength="80"></label><label>รายละเอียด<textarea id="details" rows="4" maxlength="1000"></textarea></label><label>ราคา / ข้อความกำกับ<input id="price" maxlength="80"></label><div class="form-actions"><button type="button" id="delete">ลบสินค้า</button><button class="primary" type="submit">บันทึกสินค้า</button></div></form></dialog><script type="module" src="/main.js"></script></body></html>
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123f35">
+  <meta name="description" content="ออกแบบแคตตาล็อกเครื่องมือแพทย์ เพิ่มรูปสินค้า ปรับแม่แบบ และส่งออก PDF ขนาด A4">
+  <title>VERDANT — Medical Catalog Studio</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#" aria-label="Verdant Medical Catalog Studio">
+      <span class="brand-mark" aria-hidden="true"><i></i></span>
+      <span class="brand-word">VERDANT<small>MEDICAL CATALOG STUDIO</small></span>
+    </a>
+    <span class="header-note"><span class="status-dot"></span> ออกแบบด้วยความใส่ใจ ในทุกรายละเอียด</span>
+    <button id="print" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></svg><span>ส่งออก PDF <b>· A4</b></span></button>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="intro-copy">
+        <div class="hero-label"><span class="status-dot"></span> THE CARE BEHIND EVERY DETAIL</div>
+        <h1>นำเสนอคุณภาพ<br>ด้วยดีไซน์ที่<span>ใส่ใจ.</span></h1>
+        <p>สร้างแคตตาล็อกเครื่องมือแพทย์ในแบบของคุณ<br>เรียบหรู อ่านง่าย พร้อมส่งต่อทุกรายละเอียด</p>
+        <div class="hero-features"><span>รูปแบบปรับแต่งได้</span><i></i><span>ตัวอย่างแบบเรียลไทม์</span><i></i><span>PDF ขนาด A4</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-grid"></div>
+        <div class="medical-emblem"><span class="medical-cross"></span></div>
+        <div class="art-note"><span class="art-note-icon">+</span><span>Thoughtfully designed.<small>FOR BETTER CARE</small></span></div>
+        <svg class="pulse-line" viewBox="0 0 480 120" fill="none"><path d="M0 64h115l16-19 20 41 25-69 29 93 21-46h254" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="art-caption">PRECISION. CLARITY. CARE.</span>
+      </div>
+    </section>
+    <div class="workspace-heading"><div><span class="eyebrow">YOUR CREATIVE WORKSPACE</span><h2>แคตตาล็อกที่เป็นคุณ</h2></div><span class="workspace-hint">ปรับด้านซ้าย · ดูตัวอย่างด้านขวา</span></div>
+    <div class="workspace">
+      <aside aria-label="เครื่องมือออกแบบแคตตาล็อก">
+        <div class="panel-title"><div><h2>ออกแบบแคตตาล็อก</h2><p>เริ่มจากรายละเอียดเล็ก ๆ ที่สำคัญ</p></div><span class="panel-icon" aria-hidden="true">✦</span></div>
+        <section class="controls">
+          <h3><span class="step">01</span><span>ข้อมูลแบรนด์</span></h3>
+          <label>ชื่อแบรนด์<input id="brandName" maxlength="70"></label>
+          <label>ชื่อแคตตาล็อก<input id="catalogTitle" maxlength="100"></label>
+          <label>คำอธิบาย<textarea id="description" rows="2" maxlength="250"></textarea></label>
+          <label>ช่องทางติดต่อ<input id="contact" maxlength="120"></label>
+        </section>
+        <section class="controls">
+          <h3><span class="step">02</span><span>สไตล์และแม่แบบ</span></h3>
+          <div class="templates" aria-label="เลือกแม่แบบ">
+            <button data-layout="editorial" type="button"><span class="template-mini mini-editorial" aria-hidden="true"><i></i><i></i></span><strong>Editorial</strong><small>เรียบหรู</small></button>
+            <button data-layout="grid" type="button"><span class="template-mini mini-grid" aria-hidden="true"><i></i><i></i></span><strong>Collection</strong><small>คอลเลกชัน</small></button>
+            <button data-layout="minimal" type="button"><span class="template-mini mini-minimal" aria-hidden="true"><i></i><i></i></span><strong>Minimal</strong><small>กระชับ</small></button>
+          </div>
+          <div class="palette-label">เฉดสีที่คัดสรร <span>INSPIRED BY CARE</span></div>
+          <div class="palette" aria-label="เลือกโทนสี">
+            <button type="button" data-color="#164e40" style="--swatch:#164e40" aria-label="เขียวฟอเรสต์"></button>
+            <button type="button" data-color="#26715e" style="--swatch:#26715e" aria-label="เขียวเจด"></button>
+            <button type="button" data-color="#526b50" style="--swatch:#526b50" aria-label="เขียวเซจ"></button>
+            <button type="button" data-color="#236b70" style="--swatch:#236b70" aria-label="เขียวทีล"></button>
+            <button type="button" data-color="#455c33" style="--swatch:#455c33" aria-label="เขียวโอลีฟ"></button>
+          </div>
+          <div class="color-row"><label>เลือกสีเอง<input type="color" id="accent"></label><label>ขนาดข้อความ<select id="fontSize"><option value="14">เล็ก</option><option value="16">กลาง</option><option value="18">ใหญ่</option></select></label></div>
+        </section>
+        <section class="controls">
+          <h3><span class="step">03</span><span>รายการสินค้า</span><b id="count"></b></h3>
+          <div id="productList"></div>
+          <button id="add" class="add"><span>＋</span> เพิ่มสินค้าใหม่</button>
+        </section>
+        <p class="save-note" id="status" role="status"><span class="status-dot"></span> บันทึกอัตโนมัติบนเบราว์เซอร์นี้</p>
+      </aside>
+      <section class="preview-area" aria-label="ตัวอย่างแคตตาล็อก">
+        <div class="preview-toolbar"><span><i class="status-dot"></i> ตัวอย่างแคตตาล็อก <b class="live-badge">LIVE</b></span><span class="paper-badge">A4 <i>210 × 297 มม.</i></span></div>
+        <div class="paper-stage"><article id="catalog"></article></div>
+        <div class="export-help"><span class="help-icon" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>พร้อมส่งต่อในรูปแบบ PDF</strong><br>กดส่งออก เลือก “บันทึกเป็น PDF” · กระดาษ A4 · สเกล 100%<br>ปิดหัวกระดาษและท้ายกระดาษของเบราว์เซอร์ก่อนบันทึก</p></div>
+      </section>
+    </div>
+    <div class="studio-footer"><span>VERDANT <i>/</i> MEDICAL CATALOG STUDIO</span><span>รายละเอียดที่ดี เริ่มจากความใส่ใจ</span></div>
+  </main>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="productForm">
+      <div class="panel-title"><div><span class="eyebrow">PRODUCT DETAILS</span><h2 id="editor-title">รายละเอียดสินค้า</h2></div><button type="button" id="close" aria-label="ปิดหน้าต่าง">✕</button></div>
+      <label class="upload-label">รูปสินค้า <span>JPG, PNG, WebP · ไม่เกิน 15 MB</span><input type="file" id="photo" accept="image/png,image/jpeg,image/webp"></label>
+      <img id="photoPreview" alt="ตัวอย่างรูปสินค้า" hidden><button type="button" id="removePhoto">ลบรูปภาพ</button>
+      <label>ชื่อสินค้า<input id="productName" required maxlength="120"></label>
+      <div class="form-grid"><label>หมวดหมู่<input id="category" maxlength="80"></label><label>รุ่น / รหัสสินค้า<input id="model" maxlength="80"></label></div>
+      <label>รายละเอียด<textarea id="details" rows="4" maxlength="1000"></textarea></label>
+      <label>ราคา / ข้อความกำกับ<input id="price" maxlength="80"></label>
+      <div class="form-actions"><button type="button" id="delete">ลบสินค้า</button><button class="primary" type="submit">บันทึกสินค้า <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
+    </form>
+  </dialog>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
