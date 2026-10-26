@@ -37,6 +37,27 @@ npx vercel login
 npx vercel --prod
 ```
 
+## Gemini design collaboration (development only)
+
+The optional `scripts/gemini-review.py` tool asks the Gemini API to review current source files and screenshots using `docs/gemini-ux-brief.md`. This is a development tool; the deployed catalog never receives an API key or calls Gemini.
+
+Configure `GEMINI_API_KEY` securely through environment settings, with HTTPS access to `generativelanguage.googleapis.com`. Never put the credential in browser code, Git, or command arguments. Use an API key from Google AI Studio. The tool uses the account's highest-version stable general-purpose Gemini Pro model returned by the model list; choose another available model with `--model` if desired. Requests may incur Google API charges.
+
+Prepare the request without calling Google:
+
+```sh
+python3 scripts/gemini-review.py --prepare-only
+```
+
+List available models and request a review:
+
+```sh
+python3 scripts/gemini-review.py --list-models
+python3 scripts/gemini-review.py --screenshot /path/to/desktop.png --screenshot /path/to/mobile.png
+```
+
+Outputs go to `/workspace/catalog-gemini-review` by default. `review.md` indicates a complete response; `review-partial.md` is an incomplete response and returns a nonzero exit status. The tool does not edit or deploy the app. Review the design recommendations, implement selected changes, then validate the browser workflow and A4 output before publishing.
+
 ## Standalone download
 
 Open `download/medical-catalog.html` in a browser. Regenerate the standalone HTML and ZIP after changes with:
