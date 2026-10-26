@@ -2,6 +2,14 @@
 
 เว็บแอปสร้างแคตตาล็อกเครื่องมือแพทย์ โทนเขียว พร้อมเพิ่มรูปสินค้า แก้ไขข้อความ เลือกแม่แบบ และพิมพ์ PDF ขนาด A4
 
+## Catalog design
+
+- Looped Thai Sarabun Regular / SemiBold fonts, bundled for offline use.
+- Six paired palettes: green with gold, coral, navy, plum, terracotta, or sky blue. Main and accent colors can also be adjusted independently.
+- Six layouts: editorial rows, two-column cards, compact rows, large-image showcase, alternating image sides, and a featured first product.
+- Left/right image placement for row layouts and the featured product; up/down controls change product order and which item is featured.
+- Layout, colors, order, product data, and images persist in the existing browser catalog.
+
 ## Development
 
 Requires Node.js 22.12+ (validated with Node.js 24).
@@ -43,4 +51,4 @@ Catalogs and images are saved in browser localStorage on the current device and 
 
 Use the PDF A4 button, select Save as PDF, choose A4 paper at 100% scale, and disable browser headers and footers.
 
-Noto Sans Thai is bundled locally; its license is in `public/fonts/OFL.txt`.
+Sarabun Regular (400) and SemiBold (600), a looped Thai typeface, are bundled locally; their license is in `public/fonts/OFL.txt`.

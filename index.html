@@ -48,22 +48,24 @@
         <section class="controls">
           <h3><span class="step">02</span><span>สไตล์และแม่แบบ</span></h3>
           <div class="templates" aria-label="เลือกแม่แบบ">
-            <button data-layout="editorial" type="button"><span class="template-mini mini-editorial" aria-hidden="true"><i></i><i></i></span><strong>Editorial</strong><small>เรียบหรู</small></button>
-            <button data-layout="grid" type="button"><span class="template-mini mini-grid" aria-hidden="true"><i></i><i></i></span><strong>Collection</strong><small>คอลเลกชัน</small></button>
-            <button data-layout="minimal" type="button"><span class="template-mini mini-minimal" aria-hidden="true"><i></i><i></i></span><strong>Minimal</strong><small>กระชับ</small></button>
+            <button data-layout="editorial" type="button"><span class="template-mini mini-editorial" aria-hidden="true"><i></i><i></i></span><strong>รายการ</strong><small>รูปคู่ข้อความ</small></button>
+            <button data-layout="grid" type="button"><span class="template-mini mini-grid" aria-hidden="true"><i></i><i></i></span><strong>สองคอลัมน์</strong><small>การ์ดคู่กัน</small></button>
+            <button data-layout="minimal" type="button"><span class="template-mini mini-minimal" aria-hidden="true"><i></i><i></i></span><strong>กระชับ</strong><small>รูปขนาดเล็ก</small></button>
+            <button data-layout="showcase" type="button"><span class="template-mini mini-showcase" aria-hidden="true"><i></i><i></i></span><strong>ภาพใหญ่</strong><small>รูปอยู่ด้านบน</small></button>
+            <button data-layout="alternating" type="button"><span class="template-mini mini-alternating" aria-hidden="true"><i></i><i></i></span><strong>สลับฝั่ง</strong><small>ซ้ายสลับขวา</small></button>
+            <button data-layout="featured" type="button"><span class="template-mini mini-featured" aria-hidden="true"><i></i><i></i></span><strong>สินค้าเด่น</strong><small>ชิ้นแรกเต็มแถว</small></button>
           </div>
-          <div class="palette-label">เฉดสีที่คัดสรร <span>INSPIRED BY CARE</span></div>
-          <div class="palette" aria-label="เลือกโทนสี">
-            <button type="button" data-color="#164e40" style="--swatch:#164e40" aria-label="เขียวฟอเรสต์"></button>
-            <button type="button" data-color="#26715e" style="--swatch:#26715e" aria-label="เขียวเจด"></button>
-            <button type="button" data-color="#526b50" style="--swatch:#526b50" aria-label="เขียวเซจ"></button>
-            <button type="button" data-color="#236b70" style="--swatch:#236b70" aria-label="เขียวทีล"></button>
-            <button type="button" data-color="#455c33" style="--swatch:#455c33" aria-label="เขียวโอลีฟ"></button>
-          </div>
-          <div class="color-row"><label>เลือกสีเอง<input type="color" id="accent"></label><label>ขนาดข้อความ<select id="fontSize"><option value="14">เล็ก</option><option value="16">กลาง</option><option value="18">ใหญ่</option></select></label></div>
+          <label>ตำแหน่งรูปสินค้า<select id="imageSide" aria-describedby="layoutHelp"><option value="left">รูปอยู่ซ้าย</option><option value="right">รูปอยู่ขวา</option></select></label>
+          <p class="field-help" id="layoutHelp">ปรับด้านของรูปในแบบรายการ กระชับ สลับฝั่ง และสินค้าเด่น</p>
+          <div class="palette-label">ชุดสีตัดกับเขียว <span>CURATED PALETTES</span></div>
+          <div class="theme-palette" id="themePalette" aria-label="เลือกชุดสี"></div>
+          <div class="color-row"><label>สีเขียวหลัก<input type="color" id="accent"></label><label>สีตัด / สีตกแต่ง<input type="color" id="secondary"></label></div>
+          <label>ขนาดข้อความ<select id="fontSize"><option value="14">เล็กมาก</option><option value="16">เล็ก</option><option value="18">กลาง · แนะนำ</option><option value="20">ใหญ่</option></select></label>
+          <p class="field-help">ฟอนต์ Sarabun · ตัวอักษรไทยมีหัว อ่านง่าย</p>
         </section>
         <section class="controls">
           <h3><span class="step">03</span><span>รายการสินค้า</span><b id="count"></b></h3>
+          <p class="field-help">กดลูกศรขึ้น–ลงเพื่อจัดลำดับ · แบบสินค้าเด่นจะเน้นสินค้าลำดับแรก</p>
           <div id="productList"></div>
           <button id="add" class="add"><span>＋</span> เพิ่มสินค้าใหม่</button>
         </section>
