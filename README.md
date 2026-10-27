@@ -4,6 +4,8 @@
 
 ## Catalog design
 
+The compact studio has Products / Layout / Brand tabs, a one-tap Edit/Preview switch on mobile, fit-width/75%/100% preview, inline upload/save feedback, and undo for the last deleted product. The `studio.css` layer styles the editor separately from catalog and print styles.
+
 - Looped Thai Sarabun Regular / SemiBold fonts, bundled for offline use.
 - Six paired palettes: green with gold, coral, navy, plum, terracotta, or sky blue. Main and accent colors can also be adjusted independently.
 - Six layouts: editorial rows, two-column cards, compact rows, large-image showcase, alternating image sides, and a featured first product.
@@ -41,7 +43,7 @@ npx vercel --prod
 
 The optional `scripts/gemini-review.py` tool asks the Gemini API to review current source files and screenshots using `docs/gemini-ux-brief.md`. This is a development tool; the deployed catalog never receives an API key or calls Gemini.
 
-Configure `GEMINI_API_KEY` securely through environment settings, with HTTPS access to `generativelanguage.googleapis.com`. Never put the credential in browser code, Git, or command arguments. Use an API key from Google AI Studio. The tool uses the account's highest-version stable general-purpose Gemini Pro model returned by the model list; choose another available model with `--model` if desired. Requests may incur Google API charges.
+Configure `GEMINI_API_KEY` securely through environment settings, with HTTPS access to `generativelanguage.googleapis.com`. Never put the credential in browser code, Git, or command arguments. Use an API key from Google AI Studio. The tool prefers Gemini 3.5 Flash when listed (validated with an actual design review), otherwise an available stable Gemini Pro model; choose another model with `--model` if needed. Model-list membership does not guarantee generation quota or access. Requests may incur Google API charges.
 
 Prepare the request without calling Google:
 

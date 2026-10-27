@@ -78,6 +78,7 @@ class ReviewTests(unittest.TestCase):
     def test_model_selection_and_membership(self):
         models = [{'name': n} for n in ['models/gemini-2.9-pro','models/gemini-2.10-pro','models/gemini-3.0-pro-preview','models/gemini-3.0-flash']]
         self.assertEqual(m.choose_model(models, None), 'models/gemini-2.10-pro')
+        self.assertEqual(m.choose_model(models + [{'name': 'models/gemini-3.5-flash'}], None), 'models/gemini-3.5-flash')
         self.assertEqual(m.choose_model(models, 'gemini-3.0-flash'), 'models/gemini-3.0-flash')
         with self.assertRaises(ValueError): m.choose_model(models, 'gemini-unavailable')
         with self.assertRaises(ValueError): m.choose_model([{'name':'models/gemini-3.0-pro-preview'}], None)

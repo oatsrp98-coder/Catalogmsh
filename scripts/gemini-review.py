@@ -12,7 +12,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parent.parent
 API = 'https://generativelanguage.googleapis.com/v1beta'
-SOURCE_FILES = ['index.html', 'style.css', 'main.js', 'package.json']
+SOURCE_FILES = ['index.html', 'style.css', 'studio.css', 'main.js', 'package.json']
 
 
 def build_request(screenshots):
@@ -75,7 +75,10 @@ def choose_model(models, requested):
         if selected not in names:
             raise ValueError('Requested model is not available for generateContent; use --list-models.')
         return selected
-    # Use a stable general-purpose Pro model actually returned by this account.
+    # Prefer the model successfully validated for this project's design reviews.
+    if 'models/gemini-3.5-flash' in names:
+        return 'models/gemini-3.5-flash'
+    # Otherwise use an available stable general-purpose Pro model.
     stable = [n for n in names if re.fullmatch(r'models/gemini-\d+(?:\.\d+)*-pro', n)]
     if not stable:
         raise ValueError('No stable Gemini Pro model was listed. Use --list-models and choose --model explicitly.')

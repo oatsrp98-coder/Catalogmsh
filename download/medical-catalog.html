@@ -351,6 +351,242 @@ footer { font-size: .5em; }
   .featured .product-card:first-child .product-visual,.featured .product-card:first-child .product-visual img { height: 48mm; min-height: 0; }
 }
 </style>
+  <style>/* The application workspace is independent of the printable catalog. */
+@media screen {
+  :root {
+    --studio-bg: #f2f5f0;
+    --studio-surface: #ffffff;
+    --studio-text: #1d352b;
+    --studio-muted: #52665a;
+    --studio-border: #d9e3d9;
+    --studio-primary: #123f35;
+    --studio-gold: #927347;
+    --studio-shadow: 0 6px 24px #1b3c2810;
+  }
+  html, body { min-height: 100%; }
+  body { background: var(--studio-bg); color: var(--studio-text); font-size: 16px; line-height: 1.65; }
+  button { min-height: 44px; }
+  button:disabled { cursor: not-allowed; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 3px solid #679f7c; outline-offset: 3px; }
+  [hidden] { display: none !important; }
+  .app-header { height: 80px; min-height: 80px; padding: 16px 28px; gap: 30px; background: #fff; border-bottom: 1px solid var(--studio-border); }
+  .app-header .brand { gap: 12px; }
+  .app-header .brand-word { font-size: 20px; letter-spacing: 2.8px; }
+  .app-header .brand-word small { font-size: 8px; letter-spacing: 1.65px; }
+  .app-header .brand-mark { width: 42px; height: 42px; border-radius: 12px 12px 12px 3px; }
+  .header-document { margin-right: auto; padding-left: 26px; border-left: 1px solid var(--studio-border); min-width: 0; }
+  .header-document small { display: block; font-size: 10px; letter-spacing: 1.8px; font-weight: 600; color: #6c7c6e; }
+  .document-name { display: block; max-width: 420px; color: #29493a; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app-header .primary { min-height: 46px; font-size: 14px; padding: 11px 20px; border-radius: 10px; gap: 10px; }
+  .app-header .primary svg { width: 19px; height: 19px; }
+  main.studio-main { max-width: 1800px; height: calc(100dvh - 80px); min-height: 550px; display: flex; flex-direction: column; padding: 22px 28px 24px; margin: 0 auto; }
+  .studio-main .workspace-heading { flex: 0 0 auto; align-items: center; margin: 0 0 20px; gap: 20px; }
+  .studio-main .workspace-heading .eyebrow { color: #6f795f; font-size: 9px; letter-spacing: 1.8px; }
+  .studio-main .workspace-heading h1 { font-size: 27px; line-height: 1.4; font-weight: 600; letter-spacing: -.6px; margin: 3px 0; }
+  .workspace-description { color: var(--studio-muted); font-size: 14px; margin: 4px 0 0; }
+  .workspace-meta { flex-shrink: 0; padding: 8px 13px; border: 1px solid #d5e0d1; background: #eaf0e4; color: #526749; border-radius: 30px; font-size: 14px; }
+  .mobile-view-switcher { display: none; }
+  .studio-main .workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 360px minmax(0, 1fr); align-items: stretch; gap: 22px; }
+  .editor-panel { display: flex; flex-direction: column; min-width: 0; min-height: 0; width: auto; background: var(--studio-surface); border: 1px solid var(--studio-border); border-radius: 16px; box-shadow: var(--studio-shadow); overflow: hidden; }
+  .editor-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 22px 16px; border-top: 3px solid #b5c5aa; }
+  .editor-heading h2 { font-size: 18px; line-height: 1.4; margin: 0; }
+  .editor-heading p { color: var(--studio-muted); font-size: 14px; margin: 5px 0 0; }
+  .studio-tabs { display: flex; flex-shrink: 0; align-items: stretch; padding: 5px; gap: 4px; margin: 0 18px 16px; border-radius: 10px; background: #edf2e9; }
+  .studio-tabs .tab-btn { flex: 1; min-width: 0; min-height: 44px; padding: 10px 6px; border: 0; border-radius: 7px; background: transparent; color: #526549; font-size: 14px; font-weight: 600; }
+  .studio-tabs .tab-btn[aria-selected=true] { color: var(--studio-primary); background: #fff; box-shadow: 0 2px 7px #243c2412; }
+  .studio-tabs .tab-btn:hover { color: var(--studio-primary); background: #ffffffa6; }
+  .panel-scroll { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #bfd0be transparent; }
+  .editor-panel .controls { padding: 0 20px 24px; border: 0; }
+  .editor-panel .controls h3 { font-size: 16px; gap: 8px; line-height: 1.5; margin: 4px 0 16px; }
+  .editor-panel .controls h3 b { margin-left: auto; padding: 1px 9px; border-radius: 20px; color: #476244; background: #edf3e8; font-size: 14px; }
+  .editor-panel .step { display: none; }
+  .editor-panel .field-help { color: var(--studio-muted); font-size: 14px; line-height: 1.7; margin: 12px 0 18px; }
+  .editor-panel label, #editor label { font-size: 14px; color: #344e3f; font-weight: 600; margin-top: 17px; }
+  .editor-panel input:not([type=color]), .editor-panel textarea, .editor-panel select,
+  #editor input:not([type=color]), #editor textarea, #editor select { min-height: 44px; font-size: 16px; padding: 10px 12px; color: var(--studio-text); border-color: #d1ded2; background: #fbfcf9; border-radius: 9px; }
+  .editor-panel input[type=color] { min-height: 44px; }
+  .editor-panel .color-row { gap: 14px; }
+  .editor-panel .templates { gap: 9px; }
+  .editor-panel .templates button { padding: 13px 6px 11px; border-radius: 10px; border-color: #d9e4d6; }
+  .editor-panel .templates .selected { background: #eef5e8; border-color: #537650; box-shadow: 0 0 0 1px #537650; }
+  .editor-panel .templates strong { font-size: 14px; margin-top: 9px; color: #264431; }
+  .editor-panel .templates small { font-size: 14px; line-height: 1.5; color: #526650; }
+  .editor-panel .template-mini { width: 40px; height: 46px; }
+  .editor-panel .palette-label { font-size: 15px; color: #2a4735; font-weight: 600; margin-top: 24px; }
+  .editor-panel .palette-label span { font-size: 8px; color: #66765e; }
+  .editor-panel .theme-palette { gap: 10px; }
+  .editor-panel .theme-palette button { padding: 12px; border-radius: 10px; }
+  .editor-panel .theme-palette strong { font-size: 14px; line-height: 1.5; }
+  .editor-panel .theme-palette small { font-size: 14px; color: #52664f; line-height: 1.5; }
+  .editor-panel .theme-swatches { height: 25px; }
+  .editor-panel .product-list-item { gap: 8px; margin: 12px 0; }
+  .editor-panel .product-row { padding: 12px 10px; gap: 10px; min-height: 92px; background: #fff; border-color: #dbe5d8; border-radius: 11px; }
+  .editor-panel .product-row:hover { background: #f7faf3; border-color: #97b18d; }
+  .editor-panel .thumb { width: 46px; height: 52px; border-radius: 8px; }
+  .editor-panel .thumb .placeholder { height: 52px; }
+  .editor-panel .product-row strong { color: #254332; font-size: 14px; line-height: 1.6; font-weight: 600; }
+  .editor-panel .product-row small { color: var(--studio-muted); font-size: 14px; line-height: 1.6; }
+  .editor-panel .reorder-controls { gap: 4px; }
+  .editor-panel .reorder-controls button { width: 44px; min-width: 44px; height: 44px; min-height: 44px; padding: 10px; border-radius: 9px; background: #f7faf4; border-color: #dce5d6; color: #3b5f40; }
+  .editor-panel .reorder-controls button:disabled { opacity: .35; background: #fafbf8; }
+  .editor-panel .reorder-controls svg { width: 19px; height: 19px; }
+  .editor-panel #add { min-height: 48px; margin: 0 0 8px; border: 1px solid #315e41; border-radius: 10px; background: #eef5e7; color: #244d31; font-size: 15px; font-weight: 600; }
+  .editor-panel #add:hover { background: #e1eed7; }
+  .editor-status { flex-shrink: 0; margin-top: auto; border-top: 1px solid #e0e8da; padding: 14px 20px; background: #fbfcf8; }
+  .editor-status #status { margin: 0; font-size: 14px; line-height: 1.5; color: #315e3f; font-weight: 600; overflow-wrap: anywhere; }
+  .editor-status #status[data-state=error] { color: #a63025; }
+  .editor-status small { display: block; font-size: 14px; color: var(--studio-muted); margin-top: 4px; }
+  .panel-header p { font-size: 14px; color: var(--studio-muted); margin: -6px 0 18px; }
+  .studio-tabs b { font-size: 12px; background: #e7efdf; padding: 1px 5px; border-radius: 5px; margin-left: 3px; }
+  .product-list-empty { text-align: center; padding: 26px 10px; color: var(--studio-muted); border: 1px dashed #c5d3bf; border-radius: 12px; margin-top: 16px; }
+  .product-list-empty>span { font-size: 30px; color: #7b9870; }
+  .product-list-empty h3 { justify-content: center; margin: 4px 0!important; }
+  .product-list-empty p { font-size: 14px; margin: 8px 0; }
+  .editor-status p { color: #60725b; font-size: 14px; margin: 5px 0 0; }
+  .undo-notice { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-shrink: 0; background: #fff7e8; border-top: 1px solid #ead8b4; padding: 10px 16px; color: #67491f; font-size: 14px; line-height: 1.5; }
+  .undo-notice span { overflow-wrap: anywhere; min-width: 0; }
+  #undoDelete { flex-shrink: 0; color: #624313; background: #fff; border-color: #d6b981; padding: 8px 12px; font-size: 14px; font-weight: 600; }
+  .workspace-feedback { flex-shrink: 0; margin-top: 12px; border: 1px solid #e6b4ab; border-radius: 10px; background: #fff1ed; color: #962d22; padding: 12px 16px; font-size: 14px; line-height: 1.6; }
+  .studio-main .preview-area { display: flex; flex-direction: column; min-width: 0; min-height: 0; width: auto; border: 1px solid #d4dfd1; border-radius: 16px; background: #e8eee2; overflow: hidden; }
+  .preview-toolbar { flex-shrink: 0; min-height: 78px; padding: 15px 22px; gap: 18px; align-items: center; background: #f8faf5; border-bottom: 1px solid #d7e2d1; }
+  .preview-title { min-width: 0; }
+  .preview-title strong { display: block; color: #254b35; font-size: 15px; font-weight: 600; }
+  .preview-title small { display: block; font-size: 14px; color: #52664e; margin-top: 3px; }
+  .zoom-control { display: flex; flex-shrink: 0; align-items: center; gap: 9px; margin: 0; color: #4e654c; font-size: 14px; }
+  .zoom-control select { font-size: 16px; margin: 0; width: 152px; min-height: 44px; padding: 9px 10px; background: #fff; border-color: #cfdcc9; }
+  .studio-main .paper-stage { flex: 1; min-height: 0; padding: 28px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #a9bfa0 #e8eee2; background-color: #e8eee2; background-image: radial-gradient(#9bae9140 .8px,transparent .8px); background-size: 10px 10px; }
+  .preview-footer { flex-shrink: 0; padding: 12px 20px; border-top: 1px solid #d4e0ce; background: #f6f9f2; }
+  .preview-footer p { margin: 0; font-size: 14px; color: #50664b; line-height: 1.65; }
+  #editor { max-width: calc(100vw - 32px); width: 540px; max-height: calc(100dvh - 40px); padding: 26px; border-radius: 18px; }
+  #editor .panel-title { padding: 0 0 18px; margin-bottom: 18px; }
+  #editor .panel-title .eyebrow { font-size: 10px; color: #667a5f; }
+  #editor .panel-title h2 { font-size: 22px; }
+  #editor #close { width: 44px; height: 44px; flex-shrink: 0; padding: 8px; }
+  #editor .upload-label { background: #f7faf3; border-color: #a9c09e; padding: 18px; }
+  #editor .upload-label>span { font-size: 14px; color: #51664a; }
+  #editor input[type=file] { font-size: 14px; padding: 0; min-height: 44px; }
+  #editor input[type=file]::file-selector-button { min-height: 44px; font-size: 14px; padding: 10px 14px; margin-top: 4px; }
+  #editor .form-actions { gap: 12px; }
+  #editor .form-actions button, #removePhoto { min-height: 44px; font-size: 14px; }
+  #editor #saveProduct { min-height: 46px; padding: 11px 20px; }
+  #photoError, #formError { color: #a52e22; background: #fff2ee; border-radius: 8px; padding: 10px 12px; margin: 10px 0 0; font-size: 14px; line-height: 1.6; }
+  #photoError:empty, #formError:empty { display: none; }
+
+  /* A fixed document canvas scales as a whole; viewport breakpoints must not rearrange its content. */
+  #catalog { width: 794px; max-width: none; min-height: 1123px; aspect-ratio: auto; padding: 40px; margin: 0 auto; border-radius: 2px; box-shadow: 0 12px 30px #2d482322, 0 0 0 1px #cdd8c5; }
+  #catalog .page-top { padding-bottom: 19px; }
+  #catalog .page-top strong { font-size: .64em; }
+  #catalog .page-top>span { display: block; font-size: .35em; }
+  #catalog .catalog-heading { padding: 27px 24px; min-height: 188px; margin: 22px 0 24px; }
+  #catalog .catalog-heading h2 { font-size: 2.25em; line-height: 1.25; }
+  #catalog .catalog-heading .eyebrow { font-size: .42em; }
+  #catalog .cover-copy { max-width: 76%; }
+  #catalog .cover-art { opacity: .16; }
+  #catalog .collection-heading small { font-size: .45em; letter-spacing: .6px; }
+  #catalog .products { display: block; }
+  #catalog .product-card { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; padding: 13px; margin-bottom: 14px; }
+  #catalog .product-visual { width: auto; height: auto; min-height: 165px; }
+  #catalog .product-visual img { height: 100%; min-height: 165px; max-height: 230px; }
+  #catalog .product-copy { padding: 9px 5px 4px 0; }
+  #catalog .product-copy h3 { font-size: 1.1em; }
+  #catalog .product-copy p { font-size: .8em; }
+  #catalog .product-copy .eyebrow { font-size: .5em; letter-spacing: .8px; }
+  #catalog .placeholder svg { width: 76px; height: 76px; }
+  #catalog .placeholder small { display: block; font-size: .65em; }
+  #catalog .placeholder>span { display: block; }
+  #catalog footer { font-size: .5em; gap: 16px; }
+  #catalog.editorial[data-image-side=right] .product-card { grid-template-columns: 1.1fr .9fr; }
+  #catalog.grid .products, #catalog.featured .products { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  #catalog.grid .product-card { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 10px; }
+  #catalog.grid .product-copy { padding: 4px 4px 2px; }
+  #catalog.grid .product-visual { min-height: 160px; }
+  #catalog.grid .product-visual img { height: 170px; }
+  #catalog.minimal .product-card { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 20px; padding: 0 0 18px; margin-bottom: 18px; }
+  #catalog.minimal[data-image-side=right] .product-card { grid-template-columns: minmax(0,1fr) 120px; }
+  #catalog.minimal .product-visual { min-height: 130px; }
+  #catalog.minimal .product-visual img { min-height: 130px; max-height: 180px; }
+  #catalog.minimal .product-copy { padding-top: 0; }
+  #catalog.minimal .placeholder>span { display: none; }
+  #catalog.minimal .placeholder svg { width: 54px; height: 54px; }
+  #catalog.alternating .product-card { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  #catalog.showcase .product-card { display: flex; flex-direction: column; gap: 16px; padding: 16px; }
+  #catalog.showcase .product-visual, #catalog.showcase .product-visual img { height: 220px; min-height: 0; max-height: none; }
+  #catalog.showcase .product-copy { padding: 4px; }
+  #catalog.showcase .product-copy h3 { font-size: 1.25em; }
+  #catalog.featured .product-card { display: flex; flex-direction: column; gap: 12px; padding: 13px; margin: 0; }
+  #catalog.featured .product-card:first-child { display: grid; grid-column: 1 / -1; grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  #catalog.featured .product-visual, #catalog.featured .product-visual img { height: 170px; min-height: 0; max-height: none; }
+  #catalog.featured .product-card:first-child .product-visual { height: auto; min-height: 190px; }
+  #catalog.featured .product-card:first-child .product-visual img { height: 100%; min-height: 190px; }
+  #catalog.featured .product-card:first-child .product-copy h3 { font-size: 1.25em; }
+}
+@media screen and (max-width: 1100px) and (min-width: 768px) {
+  .app-header { padding-inline: 22px; }
+  main.studio-main { padding: 20px 22px; }
+  .studio-main .workspace { grid-template-columns: 330px minmax(0,1fr); gap: 18px; }
+  .header-document { padding-left: 20px; }
+  .studio-main .paper-stage { padding: 22px; }
+  .zoom-control { font-size: 0; gap: 0; }
+  .zoom-control select { font-size: 16px; width: 130px; }
+  .preview-toolbar { padding-inline: 17px; }
+}
+@media screen and (max-width: 767px) {
+  .app-header { height: 68px; min-height: 68px; padding: 12px 16px; gap: 12px; }
+  .app-header .brand-word { font-size: 17px; letter-spacing: 2px; }
+  .app-header .brand-word small { font-size: 6px; letter-spacing: 1.1px; }
+  .app-header .brand-mark { height: 36px; width: 36px; border-radius: 10px 10px 10px 3px; }
+  .app-header .brand-mark i { width: 20px; height: 20px; }
+  .app-header .brand { gap: 8px; }
+  .header-document { display: none; }
+  .app-header .primary { padding: 10px 12px; min-height: 44px; font-size: 14px; gap: 6px; }
+  .app-header .primary b { display: none; }
+  .app-header .primary svg { width: 16px; height: 16px; }
+  main.studio-main { height: calc(100dvh - 68px); min-height: 460px; padding: 16px 12px 12px; }
+  .studio-main .workspace-heading { gap: 10px; margin: 0 4px 14px; }
+  .studio-main .workspace-heading .eyebrow { font-size: 8px; letter-spacing: 1.2px; }
+  .studio-main .workspace-heading h1 { font-size: 22px; margin: 1px 0; }
+  .workspace-description { display: none; }
+  .workspace-meta { font-size: 14px; padding: 5px 9px; }
+  .mobile-view-switcher { display: flex; flex-shrink: 0; gap: 5px; padding: 5px; border-radius: 11px; background: #e4edde; margin: 0 0 12px; }
+  .mobile-view-switcher button { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; min-height: 44px; padding: 10px 8px; border: 0; background: transparent; color: #46613e; border-radius: 8px; font-size: 15px; font-weight: 600; }
+  .mobile-view-switcher button[aria-pressed=true] { background: #fff; color: var(--studio-primary); box-shadow: 0 2px 6px #23442c12; }
+  .studio-main .workspace { display: flex; flex-direction: column; gap: 0; min-height: 0; }
+  .studio-main .workspace[data-mobile-view=edit] .preview-area { display: none; }
+  .studio-main .workspace[data-mobile-view=preview] .editor-panel { display: none; }
+  .studio-main .workspace .editor-panel, .studio-main .workspace .preview-area { flex: 1; width: 100%; min-height: 0; border-radius: 13px; }
+  .editor-heading { padding: 16px 18px 12px; }
+  .editor-heading h2 { font-size: 17px; }
+  .editor-heading p { font-size: 14px; margin-top: 3px; }
+  .studio-tabs { margin: 0 14px 13px; }
+  .studio-tabs .tab-btn { min-height: 44px; }
+  .editor-panel .controls { padding: 0 16px 20px; }
+  .editor-panel .product-row { min-height: 92px; }
+  .editor-panel .product-row strong { font-size: 14px; }
+  .editor-panel .product-row small { font-size: 14px; }
+  .editor-panel .theme-palette strong { font-size: 14px; }
+  .editor-panel .theme-palette small { font-size: 14px; }
+  .editor-status { padding: 12px 16px; }
+  .editor-status p { margin-top: 3px; }
+  .preview-toolbar { min-height: 76px; padding: 12px 14px; gap: 12px; }
+  .preview-title strong { font-size: 14px; }
+  .preview-title small { font-size: 14px; }
+  .zoom-control { font-size: 0; gap: 0; }
+  .zoom-control select { font-size: 16px; width: 126px; min-height: 44px; }
+  .studio-main .paper-stage { padding: 16px; }
+  .preview-footer { padding: 10px 14px; }
+  .preview-footer p { font-size: 14px; }
+  .workspace-feedback { margin-top: 8px; padding: 9px 12px; font-size: 14px; }
+  #editor { padding: 20px; max-height: calc(100dvh - 24px); max-width: calc(100vw - 24px); }
+  #editor .form-grid { grid-template-columns: 1fr; gap: 0; }
+  #editor .form-actions button { font-size: 14px; }
+}
+@media print {
+  .mobile-view-switcher, .editor-panel, .workspace-heading, .workspace-feedback,
+  .preview-toolbar, .preview-footer, .editor-status, .undo-notice { display: none !important; }
+  main.studio-main, .studio-main .workspace, .studio-main .preview-area, .studio-main .paper-stage { display: block !important; width: auto; height: auto; min-height: 0; max-height: none; overflow: visible; padding: 0; margin: 0; border: 0; background: none; box-shadow: none; }
+  #catalog { zoom: 1 !important; transform: none !important; }
+}
+</style>
 </head>
 <body>
   <header class="app-header">
@@ -358,39 +594,35 @@ footer { font-size: .5em; }
       <span class="brand-mark" aria-hidden="true"><i></i></span>
       <span class="brand-word">VERDANT<small>MEDICAL CATALOG STUDIO</small></span>
     </a>
-    <span class="header-note"><span class="status-dot"></span> ออกแบบด้วยความใส่ใจ ในทุกรายละเอียด</span>
+    <div class="header-document"><small>MY CATALOG / EDITOR</small><span class="document-name" id="documentName">Precision in care.</span></div>
     <button id="print" class="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></svg><span>ส่งออก PDF <b>· A4</b></span></button>
   </header>
-  <main>
-    <section class="intro">
-      <div class="intro-copy">
-        <div class="hero-label"><span class="status-dot"></span> THE CARE BEHIND EVERY DETAIL</div>
-        <h1>นำเสนอคุณภาพ<br>ด้วยดีไซน์ที่<span>ใส่ใจ.</span></h1>
-        <p>สร้างแคตตาล็อกเครื่องมือแพทย์ในแบบของคุณ<br>เรียบหรู อ่านง่าย พร้อมส่งต่อทุกรายละเอียด</p>
-        <div class="hero-features"><span>รูปแบบปรับแต่งได้</span><i></i><span>ตัวอย่างแบบเรียลไทม์</span><i></i><span>PDF ขนาด A4</span></div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="art-grid"></div>
-        <div class="medical-emblem"><span class="medical-cross"></span></div>
-        <div class="art-note"><span class="art-note-icon">+</span><span>Thoughtfully designed.<small>FOR BETTER CARE</small></span></div>
-        <svg class="pulse-line" viewBox="0 0 480 120" fill="none"><path d="M0 64h115l16-19 20 41 25-69 29 93 21-46h254" stroke="currentColor" stroke-width="2"/></svg>
-        <span class="art-caption">PRECISION. CLARITY. CARE.</span>
-      </div>
-    </section>
-    <div class="workspace-heading"><div><span class="eyebrow">YOUR CREATIVE WORKSPACE</span><h2>แคตตาล็อกที่เป็นคุณ</h2></div><span class="workspace-hint">ปรับด้านซ้าย · ดูตัวอย่างด้านขวา</span></div>
-    <div class="workspace">
-      <aside aria-label="เครื่องมือออกแบบแคตตาล็อก">
-        <div class="panel-title"><div><h2>ออกแบบแคตตาล็อก</h2><p>เริ่มจากรายละเอียดเล็ก ๆ ที่สำคัญ</p></div><span class="panel-icon" aria-hidden="true">✦</span></div>
-        <section class="controls">
-          <h3><span class="step">01</span><span>ข้อมูลแบรนด์</span></h3>
-          <label>ชื่อแบรนด์<input id="brandName" maxlength="70"></label>
-          <label>ชื่อแคตตาล็อก<input id="catalogTitle" maxlength="100"></label>
-          <label>คำอธิบาย<textarea id="description" rows="2" maxlength="250"></textarea></label>
-          <label>ช่องทางติดต่อ<input id="contact" maxlength="120"></label>
+  <main class="studio-main">
+    <div class="workspace-heading">
+      <div><span class="eyebrow">YOUR MEDICAL CATALOG, BEAUTIFULLY MADE</span><h1>แคตตาล็อกของคุณ<span>.</span></h1><p class="workspace-description">เติมรายละเอียด จัดวางให้ลงตัว พร้อมส่งต่อความใส่ใจ</p></div>
+      <div class="workspace-meta"><span class="status-dot"></span> A4 · 6 รูปแบบ</div>
+    </div>
+    <div class="mobile-view-switcher" id="mobileSwitcher" role="group" aria-label="เลือกมุมมอง">
+      <button type="button" data-view="edit" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m15 4 5 5-11 11H4v-5L15 4Z M12 7l5 5"/></svg>แก้ไขข้อมูล</button>
+      <button type="button" data-view="preview" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>ดูตัวอย่าง A4</button>
+    </div>
+    <div class="workspace" data-mobile-view="edit">
+      <aside class="editor-panel" aria-label="เครื่องมือออกแบบแคตตาล็อก">
+        <div class="editor-heading"><div><h2>พื้นที่สร้างสรรค์</h2><p>ทุกองค์ประกอบ ปรับให้เป็นคุณ</p></div><span class="panel-icon" aria-hidden="true">+</span></div>
+        <nav class="studio-tabs" role="tablist" aria-label="เครื่องมือแคตตาล็อก">
+          <button class="tab-btn" type="button" id="tab-products" data-tab="products" role="tab" aria-controls="panel-products" aria-selected="true" tabindex="0">สินค้า <b id="count">0</b></button>
+          <button class="tab-btn" type="button" id="tab-layout" data-tab="layout" role="tab" aria-controls="panel-layout" aria-selected="false" tabindex="-1">การจัดวาง</button>
+          <button class="tab-btn" type="button" id="tab-brand" data-tab="brand" role="tab" aria-controls="panel-brand" aria-selected="false" tabindex="-1">แบรนด์ / สี</button>
+        </nav>
+        <div class="panel-scroll">
+<section class="controls tab-panel" id="panel-products" role="tabpanel" aria-labelledby="tab-products" tabindex="0">
+          <div class="panel-header"><h3>รายการสินค้า</h3><p>เพิ่มรูปและรายละเอียด แล้วจัดลำดับได้ตามต้องการ</p></div><button id="add" class="add"><span>＋</span> เพิ่มสินค้าใหม่</button>
+          <p class="field-help">กดลูกศรขึ้น–ลงเพื่อจัดลำดับ · แบบสินค้าเด่นจะเน้นสินค้าลำดับแรก</p>
+          <div id="productList"></div>
+
         </section>
-        <section class="controls">
-          <h3><span class="step">02</span><span>สไตล์และแม่แบบ</span></h3>
+<section class="controls tab-panel" id="panel-layout" role="tabpanel" aria-labelledby="tab-layout" tabindex="0" hidden>
+          <h3>จัดหน้าในแบบของคุณ</h3>
           <div class="templates" aria-label="เลือกแม่แบบ">
             <button data-layout="editorial" type="button"><span class="template-mini mini-editorial" aria-hidden="true"><i></i><i></i></span><strong>รายการ</strong><small>รูปคู่ข้อความ</small></button>
             <button data-layout="grid" type="button"><span class="template-mini mini-grid" aria-hidden="true"><i></i><i></i></span><strong>สองคอลัมน์</strong><small>การ์ดคู่กัน</small></button>
@@ -401,45 +633,59 @@ footer { font-size: .5em; }
           </div>
           <label>ตำแหน่งรูปสินค้า<select id="imageSide" aria-describedby="layoutHelp"><option value="left">รูปอยู่ซ้าย</option><option value="right">รูปอยู่ขวา</option></select></label>
           <p class="field-help" id="layoutHelp">ปรับด้านของรูปในแบบรายการ กระชับ สลับฝั่ง และสินค้าเด่น</p>
-          <div class="palette-label">ชุดสีตัดกับเขียว <span>CURATED PALETTES</span></div>
-          <div class="theme-palette" id="themePalette" aria-label="เลือกชุดสี"></div>
-          <div class="color-row"><label>สีเขียวหลัก<input type="color" id="accent"></label><label>สีตัด / สีตกแต่ง<input type="color" id="secondary"></label></div>
           <label>ขนาดข้อความ<select id="fontSize"><option value="14">เล็กมาก</option><option value="16">เล็ก</option><option value="18">กลาง · แนะนำ</option><option value="20">ใหญ่</option></select></label>
           <p class="field-help">ฟอนต์ Sarabun · ตัวอักษรไทยมีหัว อ่านง่าย</p>
         </section>
-        <section class="controls">
-          <h3><span class="step">03</span><span>รายการสินค้า</span><b id="count"></b></h3>
-          <p class="field-help">กดลูกศรขึ้น–ลงเพื่อจัดลำดับ · แบบสินค้าเด่นจะเน้นสินค้าลำดับแรก</p>
-          <div id="productList"></div>
-          <button id="add" class="add"><span>＋</span> เพิ่มสินค้าใหม่</button>
-        </section>
-        <p class="save-note" id="status" role="status"><span class="status-dot"></span> บันทึกอัตโนมัติบนเบราว์เซอร์นี้</p>
+<section class="controls tab-panel" id="panel-brand" role="tabpanel" aria-labelledby="tab-brand" tabindex="0" hidden>
+          <h3>ข้อมูลแบรนด์และสี</h3>
+          <label>ชื่อแบรนด์<input id="brandName" maxlength="70"></label>
+          <label>ชื่อแคตตาล็อก<input id="catalogTitle" maxlength="100"></label>
+          <label>คำอธิบาย<textarea id="description" rows="2" maxlength="250"></textarea></label>
+          <label>ช่องทางติดต่อ<input id="contact" maxlength="120"></label>
+                  <div class="palette-label">ชุดสีตัดกับเขียว <span>CURATED PALETTES</span></div>
+          <div class="theme-palette" id="themePalette" aria-label="เลือกชุดสี"></div>
+          <div class="color-row"><label>สีเขียวหลัก<input type="color" id="accent"></label><label>สีตัด / สีตกแต่ง<input type="color" id="secondary"></label></div>
+</section>
+        </div>
+        <div class="editor-status"><p id="status" role="status" data-state="ready">พร้อมแก้ไขแคตตาล็อก</p><small>บันทึกอัตโนมัติในเบราว์เซอร์นี้</small></div>
+        <div id="undoNotice" class="undo-notice" hidden><span id="undoText" role="status"></span><button type="button" id="undoDelete">เลิกทำ</button></div>
       </aside>
-      <section class="preview-area" aria-label="ตัวอย่างแคตตาล็อก">
-        <div class="preview-toolbar"><span><i class="status-dot"></i> ตัวอย่างแคตตาล็อก <b class="live-badge">LIVE</b></span><span class="paper-badge">A4 <i>210 × 297 มม.</i></span></div>
-        <div class="paper-stage"><article id="catalog"></article></div>
-        <div class="export-help"><span class="help-icon" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>พร้อมส่งต่อในรูปแบบ PDF</strong><br>กดส่งออก เลือก “บันทึกเป็น PDF” · กระดาษ A4 · สเกล 100%<br>ปิดหัวกระดาษและท้ายกระดาษของเบราว์เซอร์ก่อนบันทึก</p></div>
+      <section class="preview-area" id="previewArea" aria-label="ตัวอย่างแคตตาล็อก">
+        <div class="preview-toolbar"><div class="preview-title"><strong><i class="status-dot"></i> ตัวอย่างแคตตาล็อก</strong><small>A4 · 210 × 297 มม.</small></div><label class="zoom-control">มุมมอง<select id="previewScale" aria-label="ขนาดตัวอย่าง"><option value="fit">พอดีความกว้าง</option><option value="0.75">75%</option><option value="1">100%</option></select></label></div>
+        <div class="paper-stage" tabindex="0" aria-label="เลื่อนดูแคตตาล็อก"><article id="catalog"></article></div>
+        <div class="preview-footer"><p>ส่งออก PDF: เลือก A4 · สเกล 100% · ปิดหัวและท้ายกระดาษของเบราว์เซอร์</p></div>
       </section>
     </div>
-    <div class="studio-footer"><span>VERDANT <i>/</i> MEDICAL CATALOG STUDIO</span><span>รายละเอียดที่ดี เริ่มจากความใส่ใจ</span></div>
+    <p id="workspaceError" class="workspace-feedback" role="alert" hidden></p>
   </main>
   <dialog id="editor" aria-labelledby="editor-title">
     <form id="productForm">
       <div class="panel-title"><div><span class="eyebrow">PRODUCT DETAILS</span><h2 id="editor-title">รายละเอียดสินค้า</h2></div><button type="button" id="close" aria-label="ปิดหน้าต่าง">✕</button></div>
-      <label class="upload-label">รูปสินค้า <span>JPG, PNG, WebP · ไม่เกิน 15 MB</span><input type="file" id="photo" accept="image/png,image/jpeg,image/webp"></label>
+      <label class="upload-label">รูปสินค้า <span>JPG, PNG, WebP · ไม่เกิน 15 MB</span><input type="file" id="photo" aria-describedby="photoError photoStatus" accept="image/png,image/jpeg,image/webp"></label>
+      <p id="photoError" class="inline-error" role="alert" hidden></p><p id="photoStatus" class="upload-status" role="status"></p>
       <img id="photoPreview" alt="ตัวอย่างรูปสินค้า" hidden><button type="button" id="removePhoto">ลบรูปภาพ</button>
       <label>ชื่อสินค้า<input id="productName" required maxlength="120"></label>
       <div class="form-grid"><label>หมวดหมู่<input id="category" maxlength="80"></label><label>รุ่น / รหัสสินค้า<input id="model" maxlength="80"></label></div>
       <label>รายละเอียด<textarea id="details" rows="4" maxlength="1000"></textarea></label>
       <label>ราคา / ข้อความกำกับ<input id="price" maxlength="80"></label>
-      <div class="form-actions"><button type="button" id="delete">ลบสินค้า</button><button class="primary" type="submit">บันทึกสินค้า <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
+      <p id="formError" class="inline-error" role="alert" hidden></p>
+      <div class="form-actions"><button type="button" id="delete">ลบสินค้า</button><button class="primary" type="submit" id="saveProduct">บันทึกสินค้า <span aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
     </form>
   </dialog>
   <script>const $=s=>document.querySelector(s);
 const initial={brandName:'VERDANT MEDICAL',catalogTitle:'Precision in care.',description:'คัดสรรเครื่องมือแพทย์ เพื่อการดูแลที่ใส่ใจในทุกรายละเอียด',contact:'YOUR WEBSITE  /  YOUR CONTACT',accent:'#164e40',secondary:'#947024',surface:'#faf6ed',fontSize:'18',layout:'editorial',imageSide:'left',products:[{id:(globalThis.crypto?.randomUUID?.() || 'item-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)),name:'เครื่องวัดความดันโลหิต',category:'PATIENT MONITORING',model:'MODEL / BP-01',details:'พื้นที่สำหรับรายละเอียดสินค้า คุณสมบัติ และข้อมูลทางเทคนิคที่ผ่านการตรวจสอบแล้ว',price:'สอบถามรายละเอียด',image:''},{id:(globalThis.crypto?.randomUUID?.() || 'item-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)),name:'หูฟังแพทย์',category:'DIAGNOSTIC INSTRUMENTS',model:'MODEL / ST-02',details:'เพิ่มรูปสินค้าและรายละเอียด เพื่อสร้างแคตตาล็อกในแบบของคุณ',price:'สอบถามรายละเอียด',image:''}]};
 let state=structuredClone(initial);try{const saved=JSON.parse(localStorage.getItem('verdant-catalog'));if(saved&&Array.isArray(saved.products))state={...initial,...saved}}catch{}
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function save(){try{localStorage.setItem('verdant-catalog',JSON.stringify(state));$('#status').textContent='✓ บันทึกแล้วบนเบราว์เซอร์นี้';return true}catch{$('#status').textContent='พื้นที่จัดเก็บเต็ม กรุณาลดจำนวนรูปก่อนปิดหน้านี้';return false}}
+function setStatus(message, error=false) {
+  $('#status').textContent=message;
+  $('#status').dataset.state=error?'error':'saved';
+  $('#workspaceError').hidden=!error;
+  $('#workspaceError').textContent=error?message:'';
+}
+function save(){
+  try{localStorage.setItem('verdant-catalog',JSON.stringify(state));setStatus('บันทึกเรียบร้อยแล้ว');return true}
+  catch{setStatus('ยังบันทึกไม่ได้: พื้นที่จัดเก็บเต็ม ลองลดรูปภาพและบันทึกอีกครั้งก่อนปิดหน้านี้',true);return false}
+}
 const themes = [
   {id:'gold',name:'เขียว × ทอง',note:'หรูหรา อบอุ่น',accent:'#164e40',secondary:'#947024',surface:'#faf6ed'},
   {id:'coral',name:'เขียว × คอรัล',note:'สดใส มีชีวิตชีวา',accent:'#21614d',secondary:'#b64c3f',surface:'#fff3ee'},
@@ -468,7 +714,8 @@ function render(){
   $('#imageSide').disabled=['grid','showcase'].includes(state.layout);
   $('#layoutHelp').textContent=$('#imageSide').disabled?'แม่แบบนี้วางรูปด้านบนของข้อความเสมอ':'ปรับด้านของรูป · แบบสลับฝั่งจะสลับจากด้านที่เลือก';
   $('#count').textContent=state.products.length;
-  $('#productList').innerHTML=state.products.map((p,i)=>`<div class="product-list-item"><button class="product-row" data-id="${esc(p.id)}" aria-label="แก้ไข ${esc(p.name)}"><span class="thumb">${visual(p)}</span><span class="product-row-text"><strong>${esc(p.name)}</strong><small>${String(i+1).padStart(2,'0')} · ${esc(p.model)}</small></span></button><div class="reorder-controls"><button type="button" data-move="up" data-product="${esc(p.id)}" aria-label="ย้าย ${esc(p.name)} ขึ้น" ${i===0?'disabled':''}>${moveIcon('up')}</button><button type="button" data-move="down" data-product="${esc(p.id)}" aria-label="ย้าย ${esc(p.name)} ลง" ${i===state.products.length-1?'disabled':''}>${moveIcon('down')}</button></div></div>`).join('');
+  $('#documentName').textContent=state.catalogTitle||'แคตตาล็อกไม่มีชื่อ';
+  $('#productList').innerHTML=state.products.map((p,i)=>`<div class="product-list-item"><button class="product-row" data-id="${esc(p.id)}" aria-label="แก้ไข ${esc(p.name)}"><span class="thumb">${visual(p)}</span><span class="product-row-text"><strong>${esc(p.name)}</strong><small>${String(i+1).padStart(2,'0')} · ${esc(p.model)}</small></span></button><div class="reorder-controls"><button type="button" data-move="up" data-product="${esc(p.id)}" aria-label="ย้าย ${esc(p.name)} ขึ้น" ${i===0?'disabled':''}>${moveIcon('up')}</button><button type="button" data-move="down" data-product="${esc(p.id)}" aria-label="ย้าย ${esc(p.name)} ลง" ${i===state.products.length-1?'disabled':''}>${moveIcon('down')}</button></div></div>`).join('')||'<div class="product-list-empty"><span aria-hidden="true">+</span><h3>เริ่มจากสินค้าชิ้นแรก</h3><p>เพิ่มรูปและรายละเอียดสินค้า<br>แล้วดูแคตตาล็อกของคุณได้ทันที</p></div>';
   $('#catalog').innerHTML=`
     <div class="page-top"><strong><span class="catalog-mark" aria-hidden="true">+</span>${esc(state.brandName)}</strong><span>MEDICAL COLLECTION<br><b>${new Date().getFullYear()}</b></span></div>
     <div class="catalog-heading">
@@ -489,9 +736,19 @@ function render(){
 for(const key of ['brandName','catalogTitle','description','contact','accent','secondary','fontSize','imageSide']){$('#'+key).value=state[key];$('#'+key).addEventListener('input',e=>{state[key]=e.target.value;render();save()})}
 document.querySelectorAll('[data-layout]').forEach(b=>b.onclick=()=>{state.layout=b.dataset.layout;render();save()});
 document.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{const t=themes.find(t=>t.id===b.dataset.theme);for(const key of ['accent','secondary','surface'])state[key]=t[key];$('#accent').value=state.accent;$('#secondary').value=state.secondary;render();save()});
-let editing=null,photo='',uploadToken=0;
-function showPhoto(){$('#photoPreview').hidden=!photo;$('#photoPreview').src=photo||'';$('#removePhoto').hidden=!photo}
-function open(id){uploadToken++;editing=id;const p=state.products.find(p=>p.id===id)||{};for(const key of ['category','model','details','price'])$('#'+key).value=p[key]||'';$('#productName').value=p.name||'';photo=p.image||'';$('#photo').value='';showPhoto();$('#delete').hidden=!id;$('#editor').showModal()}
+let editing=null,photo='',uploadToken=0,deletedProduct=null;
+function inlineError(id,message='') {$(id).textContent=message;$(id).hidden=!message;}
+function uploadBusy(busy){$('#saveProduct').disabled=busy;$('#photoStatus').textContent=busy?'กำลังเตรียมรูปภาพ…':'';}
+function showPhoto(){$('#photoPreview').hidden=!photo;if(photo)$('#photoPreview').src=photo;else $('#photoPreview').removeAttribute('src');$('#removePhoto').hidden=!photo;}
+function open(id){
+  uploadToken++;uploadBusy(false);editing=id;
+  inlineError('#photoError');inlineError('#formError');
+  const p=state.products.find(p=>p.id===id)||{};
+  for(const key of ['category','model','details','price'])$('#'+key).value=p[key]||'';
+  $('#productName').value=p.name||'';photo=p.image||'';$('#photo').value='';
+  showPhoto();$('#delete').hidden=!id;$('#editor-title').textContent=id?'แก้ไขสินค้า':'เพิ่มสินค้าใหม่';$('#editor').showModal();
+  $('#productName').focus();
+}
 $('#add').onclick=()=>open(null);
 $('#productList').onclick=e=>{
   const move=e.target.closest('[data-move]');
@@ -503,15 +760,90 @@ $('#productList').onclick=e=>{
     [state.products[i],state.products[next]]=[state.products[next],state.products[i]];
     render();const saved=save();
     const item=[...document.querySelectorAll('.product-row')].find(b=>b.dataset.id===id);
-    item?.focus({preventScroll:true});
-    if(saved)$('#status').textContent='จัดลำดับและบันทึกแล้ว';
-    return;
+    item?.focus({preventScroll:true});if(saved)setStatus('จัดลำดับและบันทึกแล้ว');return;
   }
   const b=e.target.closest('[data-id]');if(b)open(b.dataset.id);
 };
-$('#close').onclick=()=>$('#editor').close();$('#removePhoto').onclick=()=>{uploadToken++;photo='';showPhoto()};
-$('#photo').onchange=async e=>{const file=e.target.files[0];if(!file)return;const token=++uploadToken;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15*1024*1024){alert('เลือกรูป JPG, PNG หรือ WebP ขนาดไม่เกิน 15 MB');return}try{const bitmap=await createImageBitmap(file);const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement('canvas');canvas.width=bitmap.width*scale;canvas.height=bitmap.height*scale;canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();if(token!==uploadToken)return;photo=canvas.toDataURL('image/webp',.85);showPhoto()}catch{alert('ไม่สามารถอ่านรูปนี้ได้ กรุณาเลือกรูปใหม่')}};
-$('#productForm').onsubmit=e=>{e.preventDefault();const name=$('#productName').value.trim();if(!name)return;const p={id:editing||(globalThis.crypto?.randomUUID?.() || 'item-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)),name,image:photo};for(const key of ['category','model','details','price'])p[key]=$('#'+key).value.trim();const idx=state.products.findIndex(x=>x.id===editing);if(idx>=0)state.products[idx]=p;else state.products.push(p);render();save();$('#editor').close()};$('#delete').onclick=()=>{if(confirm('ต้องการลบสินค้านี้หรือไม่?')){state.products=state.products.filter(p=>p.id!==editing);render();save();$('#editor').close()}};$('#print').onclick=async()=>{await document.fonts?.ready;await Promise.all([...document.querySelectorAll('#catalog img')].map(img=>img.decode?.().catch(()=>{})));window.print()};render();
+$('#close').onclick=()=>$('#editor').close();
+$('#editor').addEventListener('close',()=>{uploadToken++;uploadBusy(false);});
+$('#removePhoto').onclick=()=>{uploadToken++;uploadBusy(false);photo='';$('#photo').value='';inlineError('#photoError');showPhoto();};
+$('#photo').onchange=async e=>{
+  const file=e.target.files[0];if(!file)return;
+  const token=++uploadToken;uploadBusy(false);inlineError('#photoError');
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>15*1024*1024){
+    inlineError('#photoError','เลือกรูป JPG, PNG หรือ WebP ขนาดไม่เกิน 15 MB');return;
+  }
+  uploadBusy(true);
+  try{
+    const bitmap=await createImageBitmap(file);
+    if(token!==uploadToken){bitmap.close();return;}
+    const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));
+    const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+    canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
+    photo=canvas.toDataURL('image/webp',.85);showPhoto();
+  }catch{if(token===uploadToken)inlineError('#photoError','ไม่สามารถอ่านรูปนี้ได้ กรุณาเลือกรูปใหม่');}
+  finally{if(token===uploadToken)uploadBusy(false);}
+};
+$('#productForm').onsubmit=e=>{
+  e.preventDefault();if($('#saveProduct').disabled)return;
+  const name=$('#productName').value.trim();
+  if(!name){inlineError('#formError','กรุณาระบุชื่อสินค้า');$('#productName').focus();return;}
+  inlineError('#formError');
+  const p={id:editing||(globalThis.crypto?.randomUUID?.() || 'item-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)),name,image:photo};
+  for(const key of ['category','model','details','price'])p[key]=$('#'+key).value.trim();
+  const idx=state.products.findIndex(x=>x.id===editing);
+  if(idx>=0)state.products[idx]=p;else state.products.push(p);
+  editing=p.id;$('#delete').hidden=false;render();
+  if(save())$('#editor').close();
+  else inlineError('#formError','ยังบันทึกไม่ได้ ลองลบหรือลดขนาดรูปภาพ แล้วกดบันทึกอีกครั้ง ข้อมูลที่แก้ยังอยู่ในหน้านี้');
+};
+$('#delete').onclick=()=>{
+  const index=state.products.findIndex(p=>p.id===editing);if(index<0)return;
+  deletedProduct={product:state.products[index],index};state.products.splice(index,1);
+  render();save();$('#editor').close();$('#undoText').textContent=`ลบ “${deletedProduct.product.name}” แล้ว`;
+  $('#undoNotice').hidden=false;$('#undoDelete').focus();
+};
+$('#undoDelete').onclick=()=>{
+  if(!deletedProduct)return;
+  state.products.splice(Math.min(deletedProduct.index,state.products.length),0,deletedProduct.product);
+  deletedProduct=null;$('#undoNotice').hidden=true;render();if(save())setStatus('คืนสินค้าและบันทึกแล้ว');$('#add').focus();
+};
+
+// Editor tabs use the ARIA tab pattern; product data is untouched by navigation.
+function selectTab(name,focus=false){
+  document.querySelectorAll('[data-tab]').forEach(button=>{
+    const active=button.dataset.tab===name;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;
+    $('#panel-'+button.dataset.tab).hidden=!active;if(active&&focus)button.focus();
+  });
+  $('.panel-scroll').scrollTop=0;
+}
+const tabButtons=[...document.querySelectorAll('[data-tab]')];
+tabButtons.forEach((button,i)=>{
+  button.onclick=()=>selectTab(button.dataset.tab);
+  button.onkeydown=e=>{
+    let next;if(e.key==='ArrowRight')next=(i+1)%tabButtons.length;else if(e.key==='ArrowLeft')next=(i+tabButtons.length-1)%tabButtons.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabButtons.length-1;
+    if(next!==undefined){e.preventDefault();selectTab(tabButtons[next].dataset.tab,true);}
+  };
+});
+function updatePreviewScale(){
+  const stage=$('.paper-stage');if(stage.clientWidth===0)return;
+  const style=getComputedStyle(stage);const width=stage.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
+  const zoom=$('#previewScale').value==='fit'?Math.max(.15,Math.min(1,width/794)):Number($('#previewScale').value);
+  $('#catalog').style.zoom=zoom;
+}
+document.querySelectorAll('#mobileSwitcher [data-view]').forEach(button=>button.onclick=()=>{
+  $('.workspace').dataset.mobileView=button.dataset.view;
+  document.querySelectorAll('#mobileSwitcher [data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  requestAnimationFrame(updatePreviewScale);
+});
+$('#previewScale').onchange=updatePreviewScale;
+new ResizeObserver(updatePreviewScale).observe($('.paper-stage'));
+$('#print').onclick=async()=>{
+  const button=$('#print');button.disabled=true;
+  try{await document.fonts?.ready;await Promise.all([...document.querySelectorAll('#catalog img')].map(img=>img.decode?.().catch(()=>{})));window.print();}
+  finally{button.disabled=false;}
+};
+render();requestAnimationFrame(updatePreviewScale);
 </script>
 <!-- Font license: Copyright 2018 The Sarabun Project Authors (https://github.com/cadsondemak/Sarabun)
 
